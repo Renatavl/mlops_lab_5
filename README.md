@@ -94,10 +94,10 @@ Workflow файл: `.github/workflows/main.yaml`
 
 Кроки:
 
-1. Встановлення залежностей.
-2. Lint (`flake8`).
-3. DAG integrity (`pytest tests/test_dag_integrity.py`).
-4. Docker build (`docker build ...`).
+1. Встановлення залежностей
+2. Lint (`flake8`)
+3. DAG integrity (`pytest tests/test_dag_integrity.py`)
+4. Docker build (`docker build ...`)
 
 ## Відтворюваність
 
