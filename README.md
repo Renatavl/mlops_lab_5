@@ -79,14 +79,14 @@ Airflow UI:
 
 ## Що робить DAG
 
-1. `check_data_availability` — сенсор перевіряє наявність `data/raw/weatherAUS.csv`.
-2. `check_dvc_status` — перевірка стану DVC.
-3. `prepare_data` — запуск `python src/prepare.py`.
-4. `train_model` — запуск `python src/train.py`.
+1. `check_data_availability` — сенсор перевіряє наявність `data/raw/weatherAUS.csv`
+2. `check_dvc_status` — перевірка стану DVC
+3. `prepare_data` — запуск `python src/prepare.py`
+4. `train_model` — запуск `python src/train.py`
 5. `evaluate_and_branch`:
    - якщо `accuracy_test >= 0.85` → `register_model`;
-   - інакше → `stop_pipeline`.
-6. `register_model` — логування моделі й реєстрація версії в MLflow Registry зі стадією `Staging`.
+   - інакше → `stop_pipeline`
+6. `register_model` — логування моделі й реєстрація версії в MLflow Registry зі стадією `Staging`
 
 ## CI (GitHub Actions)
 
