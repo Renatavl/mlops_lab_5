@@ -1,0 +1,27 @@
+stages:
+  prepare:
+    cmd: python3 src/prepare.py
+    deps:
+      - data/raw/weatherAUS.csv
+      - src/prepare.py
+      - src/common.py
+      - config/config.yaml
+      - config/model/random_forest.yaml
+      - config/model/logistic_regression.yaml
+    outs:
+      - data/processed/processed_data.pickle
+      - data/processed/metadata.json
+
+  train:
+    cmd: python3 src/train.py
+    deps:
+      - data/processed/processed_data.pickle
+      - src/train.py
+      - src/common.py
+      - config/config.yaml
+      - config/model/random_forest.yaml
+      - config/model/logistic_regression.yaml
+    outs:
+      - model.pkl
+      - metrics.json
+      - confusion_matrix.png

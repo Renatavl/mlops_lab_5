@@ -1,0 +1,47 @@
+defaults:
+  - model: random_forest
+  - _self_
+
+seed: 42
+study_name: ${model.type}_ct
+
+split:
+  test_size: 0.2
+  random_state: ${seed}
+
+mlflow:
+  tracking_uri: null
+  experiment_name: MLOps_Lab5
+  parent_run_name: ${study_name}
+  log_model: true
+  register_model: true
+  model_name: WeatherPredictionModel
+  stage: Staging
+
+data:
+  raw_path: data/raw/weatherAUS.csv
+  processed_path: data/processed/processed_data.pickle
+  metadata_path: data/processed/metadata.json
+  target_column: RainTomorrow
+
+output:
+  model_dir: models
+  reports_dir: reports
+  trained_model_path: ${output.model_dir}/${study_name}_trained_model.pkl
+  ci_model_path: model.pkl
+  final_metrics_path: ${output.reports_dir}/${study_name}_final_metrics.json
+  ci_metrics_path: metrics.json
+  ci_confusion_matrix_path: confusion_matrix.png
+
+training:
+  params_path: null
+  log_to_mlflow: true
+  run_name: ${study_name}_final_train
+
+quality_gate:
+  accuracy_threshold: 0.85
+
+hydra:
+  run:
+    dir: .
+  output_subdir: null

@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+.eggs/
+.installed.cfg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Data & Models (generated artifacts — tracked by DVC, not git)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+models/*
+!models/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# CI training artifacts (regenerated on every run)
+model.pkl
+metrics.json
+confusion_matrix.png
+
+# Hydra outputs
+outputs/
+
+# MLflow
+mlruns/
+.trash/
+
+# Airflow config / logs
+airflow.db
+airflow-webserver.pid
+logs/
+plugins/
+
+# DVC internal files (NOT *.dvc — those pointer files belong in git)
+.dvc/config.local
+.dvc/tmp/
+.dvc/cache/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/

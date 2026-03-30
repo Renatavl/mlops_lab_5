@@ -1,0 +1,15 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+mlflow
+PyYAML
+dvc
+joblib
+hydra-core
+omegaconf
+pytest
+flake8
+black
+pylint

@@ -1,0 +1,78 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python3 src/prepare.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 813e7854b65d3bd13fa68fc421e11263
+      size: 1035
+    - path: config/model/logistic_regression.yaml
+      hash: md5
+      md5: d17b1c9ad385587781548ef13010dea0
+      size: 88
+    - path: config/model/random_forest.yaml
+      hash: md5
+      md5: c5464550d8debe57dd3bfe83bd23bdeb
+      size: 121
+    - path: data/raw/weatherAUS.csv
+      hash: md5
+      md5: a65cf8b8719b1a65db4f361eeec18457
+      size: 14094055
+    - path: src/common.py
+      hash: md5
+      md5: 608acf609615c0f872d598336d2035c2
+      size: 9036
+    - path: src/prepare.py
+      hash: md5
+      md5: c871a71c3a231fc646e4f9dfa057ac75
+      size: 4334
+    outs:
+    - path: data/processed/metadata.json
+      hash: md5
+      md5: 74fd514e3a9af9ebba95b0a81052a15b
+      size: 1070
+    - path: data/processed/processed_data.pickle
+      hash: md5
+      md5: 91c5ede8092b5ec0b26f21c2e80fbb6f
+      size: 25906354
+  train:
+    cmd: python3 src/train.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 813e7854b65d3bd13fa68fc421e11263
+      size: 1035
+    - path: config/model/logistic_regression.yaml
+      hash: md5
+      md5: d17b1c9ad385587781548ef13010dea0
+      size: 88
+    - path: config/model/random_forest.yaml
+      hash: md5
+      md5: c5464550d8debe57dd3bfe83bd23bdeb
+      size: 121
+    - path: data/processed/processed_data.pickle
+      hash: md5
+      md5: 91c5ede8092b5ec0b26f21c2e80fbb6f
+      size: 25906354
+    - path: src/common.py
+      hash: md5
+      md5: 608acf609615c0f872d598336d2035c2
+      size: 9036
+    - path: src/train.py
+      hash: md5
+      md5: f89b0a4bf6b84a4a5c5f0351774fccee
+      size: 4604
+    outs:
+    - path: confusion_matrix.png
+      hash: md5
+      md5: eee1ae86ff74b8db8360cf998fd39c56
+      size: 20184
+    - path: metrics.json
+      hash: md5
+      md5: b42bc513667d5695a6cc79a7f1899511
+      size: 379
+    - path: model.pkl
+      hash: md5
+      md5: 03b5a2c95fb8ab341d2483befb37cbf4
+      size: 51975419

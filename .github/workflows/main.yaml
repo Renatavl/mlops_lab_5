@@ -1,0 +1,42 @@
+name: Lab5 CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          AIRFLOW_VERSION=2.9.3
+          PYTHON_VERSION=3.11
+          CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
+          pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+          pip install -r requirements.txt
+
+      - name: Lint
+        run: |
+          flake8 src dags tests --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: DAG integrity test
+        run: |
+          pytest -q tests/test_dag_integrity.py
+
+      - name: Docker build
+        run: |
+          docker build -t mlops-lab5:ci .
